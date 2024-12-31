@@ -156,9 +156,18 @@ const mutation = new GraphQLObjectType({
       type: ProjectType,
       args: {
         id: { type: GraphQLNonNull(GraphQLID) },
-        name: { type: GraphQLNonNull(GraphQLString) },
-        description: { type: GraphQLNonNull(GraphQLString) },
-        status: { type: GraphQLNonNull(GraphQLString) },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+        status: {
+          type: new GraphQLEnumType({
+            name: "ProjectStatusUpdate",
+            values: {
+              pending: { value: "pending" },
+              progress: { value: "in progress" },
+              completed: { value: "completed" },
+            },
+          }),
+        },
       },
       resolve(parent, args) {
         const updatedProject = Project.findByIdAndUpdate(
