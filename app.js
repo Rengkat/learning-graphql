@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const colors = require("colors");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schemas/schema");
 const connect = require("./db/connectDB");
