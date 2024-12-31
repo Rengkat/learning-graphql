@@ -25,6 +25,13 @@ const ProjectType = new GraphQLObjectType({
     clientId: { type: GraphQLID },
     description: { type: GraphQLString },
     status: { type: GraphQLString },
+    //adding relationships
+    client: {
+      type: ClientType,
+      resolve(parent, args) {
+        return clients.find((client) => client.id === parent.clientId);
+      },
+    },
   }),
 });
 const RootQuery = new GraphQLObjectType({
@@ -62,6 +69,7 @@ const RootQuery = new GraphQLObjectType({
     },
   },
 });
+//mutation
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
