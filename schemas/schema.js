@@ -151,6 +151,25 @@ const mutation = new GraphQLObjectType({
         return project;
       },
     },
+    //update project
+    updateProject: {
+      type: ProjectType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLNonNull(GraphQLString) },
+        description: { type: GraphQLNonNull(GraphQLString) },
+        status: { type: GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parent, args) {
+        const updatedProject = Project.findByIdAndUpdate(
+          args.id,
+          { name: args.name, description: args.description, status: args.status },
+          { new: true }
+        );
+
+        return updatedProject;
+      },
+    },
   },
 });
 // Exporting Schema
