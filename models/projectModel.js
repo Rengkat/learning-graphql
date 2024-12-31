@@ -14,7 +14,7 @@ const ProjectSchema = new mongoose.Schema({
     enum: ["pending", "in progress", "completed"],
     default: "pending",
   },
-  client: {
+  clientId: {
     type: mongoose.Schema.ObjectId,
     ref: "Client",
   },
