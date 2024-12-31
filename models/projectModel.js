@@ -9,13 +9,14 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
+  status: {
     type: String,
     enum: ["pending", "in progress", "completed"],
-    default: pending,
+    default: "pending",
   },
   client: {
     type: mongoose.Schema.ObjectId,
     ref: "Client",
   },
 });
+module.exports = mongoose.model("Project", ProjectSchema);
