@@ -97,6 +97,17 @@ const mutation = new GraphQLObjectType({
         return client;
       },
     },
+    //delete client
+    deleteClient: {
+      type: ClientType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        const client = Client.findOneAndDelete(args.id);
+        return client;
+      },
+    },
   },
 });
 // Exporting Schema
