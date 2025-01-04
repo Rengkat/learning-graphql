@@ -33,8 +33,10 @@ const ProjectType = new GraphQLObjectType({
     // Adding relationships
     client: {
       type: ClientType,
-      resolve(parent, args) {
-        return Client.findById(parent.clientId); //clientId is a property of project schema which is the parent now
+      async resolve(parent, args) {
+        const client = await Client.findById(parent.clientId);
+
+        return client;
       },
     },
   }),
